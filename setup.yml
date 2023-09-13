@@ -1,0 +1,149 @@
+- hosts: localhost
+  gather_facts: true
+  become: true
+  become_user: "{{ lookup('env', 'USER') }}"
+
+  pre_tasks:
+    - name: Update cache
+      apt:
+        update_cache: true
+      become_user: root
+      tags:
+      - zsh
+      - tmux
+      - node
+      - rust
+      - extensions
+
+  tasks:
+  - name: Install Curl
+    apt: name=curl
+
+  - name: Install fzf
+    apt: name=fzf
+    tags:
+    - extensions
+
+  - name: Check if dotfiles exists
+    ansible.builtin.stat:
+      path: ~/dotfiles
+    register: dotfiles
+    tags:
+    - zsh
+    - tmux
+
+  - name: Setup dotfiles
+    when: dotfiles.stat.islnk is not defined
+    ansible.builtin.git:
+      repo: git@github.com:demestoss/.dotfiles.git
+      dest: ~/dotfiles
+    ignore_errors: yes
+    tags:
+    - zsh
+    - tmux
+
+  - name: Install zsh
+    apt: name=zsh
+    tags:
+    - zsh
+
+  - name: Change shell
+    shell: chsh -s `which zsh`
+    become_user: root
+    tags:
+    - zsh
+
+  - name: Install Direnv
+    shell: curl -sfL https://direnv.net/install.sh | bash
+    tags:
+    - zsh
+
+  - name: Install Zoxide
+    apt: name=zoxide
+    tags:
+    - zsh
+
+  - name: Install Starship
+    shell: sh -c "$(curl -fsSL https://starship.rs/install.sh)" -y -f
+    tags:
+    - zsh
+
+  - name: Check if zplug exists
+    ansible.builtin.stat:
+      path: ~/.zplug
+    register: zplug
+    tags:
+    - zsh
+
+  - name: Install zplug
+    when: zplug.stat.islnk is not defined
+    shell: curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    tags:
+    - zsh
+
+  - name: Install zsh plugins
+    shell: zplug install
+    ignore_errors: yes
+    tags:
+    - zsh
+
+  - name: Install tmux
+    apt: name=tmux
+    tags:
+    - tmux
+
+  - name: Install tpm
+    ansible.builtin.git:
+      repo: https://github.com/tmux-plugins/tpm
+      dest: ~/.tmux/plugins/tpm
+    tags:
+    - tmux
+
+  - name: Check if cargo is installed
+    shell: command -v cargo
+    register: cargo_exists
+    ignore_errors: yes
+    tags:
+    - rust
+    - node
+
+  - name: Download Cargo Installer
+    when: cargo_exists is failed
+    get_url:
+      url: https://sh.rustup.rs
+      dest: /tmp/sh.rustup.rs
+      mode: '0755'
+      force: 'yes'
+    tags:
+    - rust
+    - node
+
+  - name: Install rust/cargo
+    when: cargo_exists is failed
+    shell: /tmp/sh.rustup.rs -y
+    tags:
+    - rust
+    - node
+
+  - name: Install Exa
+    community.general.cargo: 
+      name: exa
+    tags:
+    - extensions
+
+  - name: Install bat
+    community.general.cargo:
+      name: bat
+    tags:
+    - extensions
+
+  - name: Install fnm
+    community.general.cargo:
+      name: fnm
+    tags:
+    - node
+
+  - name: Install Node.js LTS
+    shell: fnm install --lts && fnm use lts/latest
+    tags:
+    - node
