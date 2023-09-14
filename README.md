@@ -1,14 +1,4 @@
 ```
 sh ./install.sh
-ansible-playbook setup.yml --ask-become-pass
+ansible-playbook setup.yml --ask-become-pass --ask-vault-pass
 ```
-
-Available tags:
-```
-zsh
-tmux
-node
-rust
-addons
-```
-
