@@ -9,6 +9,6 @@ zsh
 tmux
 node
 rust
-extensions
+addons
 ```
 
