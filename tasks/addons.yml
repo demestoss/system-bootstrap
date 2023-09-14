@@ -1,0 +1,11 @@
+- name: Install fzf
+  apt: name=fzf
+
+- name: Install Exa
+  community.general.cargo: 
+    name: exa
+
+- name: Install bat
+  community.general.cargo:
+    name: bat
+

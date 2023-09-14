@@ -1,7 +1,5 @@
 ```
-sudo apt install ansible
-ansible-galaxy collection install community.general
-
+sh ./install.sh
 ansible-playbook setup.yml --ask-become-pass
 ```
 

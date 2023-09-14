@@ -1,0 +1,11 @@
+- name: Check if dotfiles exists
+  ansible.builtin.stat:
+    path: ~/dotfiles
+  register: dotfiles
+
+- name: Setup dotfiles
+  when: dotfiles.stat.islnk is not defined
+  ansible.builtin.git:
+    repo: git@github.com:demestoss/.dotfiles.git
+    dest: ~/dotfiles
+    recursive: yes

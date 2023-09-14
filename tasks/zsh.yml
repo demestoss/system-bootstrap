@@ -1,0 +1,29 @@
+- name: Install zsh
+  apt: name=zsh
+
+- name: Change shell
+  shell: chsh -s `which zsh`
+  become_user: root
+
+- name: Install Direnv
+  shell: curl -sfL https://direnv.net/install.sh | bash
+
+- name: Install Zoxide
+  apt: name=zoxide
+
+- name: Install Starship
+  shell: sh -c "$(curl -fsSL https://starship.rs/install.sh)" -y -f
+
+- name: Check if zplug exists
+  ansible.builtin.stat:
+    path: ~/.zplug
+  register: zplug
+
+- name: Install zplug
+  when: zplug.stat.islnk is not defined
+  shell: curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
+- name: Install zsh plugins
+  shell: zplug install
+  ignore_errors: yes
+
