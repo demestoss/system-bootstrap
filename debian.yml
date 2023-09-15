@@ -1,0 +1,88 @@
+- hosts: localhost
+  gather_facts: true
+  become: true
+  become_user: "{{ lookup('env', 'USER') }}"
+  
+  vars:
+    source_key: "./.ssh/id_ed25519"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+    personal: "{{ lookup('env', 'HOME') }}/personal"
+
+  pre_tasks:
+        #- name: Update cache
+        #apt:
+        #update_cache: true
+        #become_user: root
+        #tags:
+        #- zsh
+        #- tmux
+        #- node
+        #- rust
+        #- addons
+        #- dotfiles
+        #- ssh
+
+  tasks:
+  - name: Zsh tasks
+    ansible.builtin.include_tasks:
+      file: tasks/zsh.yml
+    tags:
+    - zsh
+    - dotfiles
+
+  - name: Core tasks
+    ansible.builtin.include_tasks:
+      file: tasks/core.yml
+    tags:
+    - core
+    - nvim
+    - dotfiles
+
+  - name: Dotfiles tasks
+    ansible.builtin.include_tasks:
+      file: tasks/dotfiles.yml
+    tags:
+    - dotfiles
+    - stow
+
+  - name: SSH tasks
+    ansible.builtin.include_tasks:
+      file: tasks/ssh.yml
+    tags:
+    - ssh
+    - dotfiles
+
+  - name: Cargo tasks
+    ansible.builtin.include_tasks:
+      file: tasks/rust.yml
+    tags:
+    - rust
+    - node
+    - addons
+
+  - name: Node tasks
+    ansible.builtin.include_tasks:
+      file: tasks/node.yml
+    tags:
+    - node
+
+  - name: Tmux tasks
+    ansible.builtin.include_tasks:
+      file: tasks/tmux.yml
+    tags:
+    - tmux
+    - dotfiles
+
+  - name: Neovim tasks
+    ansible.builtin.include_tasks:
+      file: tasks/nvim.yml
+    tags:
+    - nvim
+    - dotfiles
+
+  - name: Addons tasks
+    ansible.builtin.include_tasks:
+      file: tasks/addons.yml
+    tags:
+    - addons
+

@@ -1,11 +1,15 @@
-- name: Check if dotfiles exists
-  ansible.builtin.stat:
-    path: ~/dotfiles
-  register: dotfiles
+- name: Installing stow
+  become_user: root
+  apt: name=stow
 
 - name: Setup dotfiles
-  when: dotfiles.stat.islnk is not defined
   ansible.builtin.git:
     repo: git@github.com:demestoss/.dotfiles.git
-    dest: ~/dotfiles
+    dest: ~/.dotfiles
     recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
+
+- name: Stow debian dotfiles
+  shell: cd $HOME/.dotfiles && zsh debian

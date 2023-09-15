@@ -26,8 +26,9 @@
   - name: Dotfiles tasks
     ansible.builtin.include_tasks:
       file: tasks/dotfiles.yml
-    tasks:
+    tags:
     - dotfiles
+    - stow
 
   - name: SSH tasks
     ansible.builtin.include_tasks:
@@ -42,20 +43,6 @@
     tags:
     - zsh
     - dotfiles
-
-  - name: Cargo tasks
-    ansible.builtin.include_tasks:
-      file: tasks/rust.yml
-    tags:
-    - rust
-    - node
-    - addons
-
-  - name: Node tasks
-    ansible.builtin.include_tasks:
-      file: tasks/node.yml
-    tags:
-    - node
 
   - name: Tmux tasks
     ansible.builtin.include_tasks:
@@ -78,10 +65,4 @@
     tags:
     - nvim
     - dotfiles
-
-  - name: Addons tasks
-    ansible.builtin.include_tasks:
-      file: tasks/addons.yml
-    tags:
-    - addons
 
