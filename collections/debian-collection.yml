@@ -1,0 +1,32 @@
+- name: Install zsh from Apt
+  apt: name=zsh
+  tags:
+    - zsh
+    - dotfiles
+
+- name: Installing stow
+  become_user: root
+  apt: name=stow
+  tags:
+    - dotfiles
+    - stow
+
+- name: Install tmux
+  apt: name=tmux
+  tags:
+    - tmux
+    - dotfiles
+
+- name: Install fzf
+
+  apt: name=fzf
+  tags:
+    - addons
+
+- name: Core tasks
+  ansible.builtin.include_tasks:
+    file: tasks/debian-core.yml
+  tags:
+    - core
+    - nvim
+    - dotfiles

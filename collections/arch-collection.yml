@@ -1,0 +1,40 @@
+- name: Install zsh from Pacman
+  community.general.pacman:
+    name: zsh
+    update_cache: yes
+  tags:
+    - zsh
+    - dotfiles
+
+- name: Installing stow
+  become_user: root
+  community.general.pacman:
+    name: stow
+    update_cache: yes
+  tags:
+    - dotfiles
+    - stow
+
+- name: Install tmux
+  community.general.pacman:
+    name: tmux
+    update_cache: yes
+  tags:
+    - tmux
+    - dotfiles
+
+- name: Install fzf
+  become_user: root
+  community.general.pacman:
+    name: fzf
+    update_cache: yes
+  tags:
+    - addons
+
+- name: Core tasks
+  ansible.builtin.include_tasks:
+    file: tasks/arch-core.yml
+  tags:
+    - core
+    - nvim
+    - dotfiles

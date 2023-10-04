@@ -1,7 +1,3 @@
-- name: Installing stow
-  become_user: root
-  apt: name=stow
-
 - name: Setup dotfiles
   ansible.builtin.git:
     repo: git@github.com:demestoss/.dotfiles.git

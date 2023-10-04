@@ -1,6 +1,3 @@
-- name: Install zsh
-  apt: name=zsh
-
 - name: Change shell
   shell: chsh -s `which zsh`
   become_user: root
@@ -9,7 +6,7 @@
   shell: curl -sfL https://direnv.net/install.sh | bash
 
 - name: Install Zoxide
-  apt: name=zoxide
+  shell: curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
 - name: Install Starship
   shell: sh -c "$(curl -fsSL https://starship.rs/install.sh)" -y -f
@@ -26,4 +23,3 @@
 - name: Install zsh plugins
   shell: zplug install
   ignore_errors: yes
-

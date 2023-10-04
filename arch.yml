@@ -18,9 +18,9 @@
       - desktop
 
   tasks:
-    - name: Debian collection tasks
+    - name: Arch collection tasks
       ansible.builtin.include_tasks:
-        file: collections/debian-collection.yml
+        file: collections/arch-collection.yml
       tags:
         - install
         - desktop  
@@ -37,4 +37,3 @@
         file: collections/desktop-collection.yml
       tags:
         - desktop
-
