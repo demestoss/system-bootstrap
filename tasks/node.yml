@@ -1,16 +1,17 @@
 - name: Install fnm
   community.general.cargo:
     name: fnm
-
 - name: Install Node.js LTS
   shell: fnm install --lts && fnm use lts/latest
-
 - name: Install Yarn
   npm:
     name: yarn
     global: yes
-
 - name: Install pnpm
   npm:
     name: pnpm
+    global: yes
+- name: Install prettierd
+  npm:
+    name: "@fsouza/prettierd"
     global: yes
