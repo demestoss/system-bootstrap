@@ -3,39 +3,35 @@
   tags:
     - zsh
     - dotfiles
-
 - name: Installing stow
   become_user: root
   apt: name=stow
   tags:
     - dotfiles
     - stow
-
 - name: Install tmux
   apt: name=tmux
   tags:
     - tmux
     - dotfiles
-
 - name: Install fzf
   apt: name=fzf
   tags:
     - addons
-
 - name: Install rip-grep
   apt: name=ripgrep
   tags:
     - dotfiles
-
 - name: Install fd
   apt: name=fd-find
   tags:
     - dotfiles
-
 - name: Core tasks
   ansible.builtin.include_tasks:
     file: tasks/debian-core.yml
-  tags:
-    - core
-    - nvim
-    - dotfiles
+    include:
+    tags:
+      - core
+      - nvim
+      - dotfiles
+  tags: always

@@ -2,38 +2,32 @@
   gather_facts: true
   become: true
   become_user: "{{ lookup('env', 'USER') }}"
-
   vars:
     source_key: "./.ssh/id_ed25519"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
     personal: "{{ lookup('env', 'HOME') }}/personal"
-
-  pre_tasks:
-    - name: Update cache
-    apt:
-    update_cache: true
-    become_user: root
-    tags:
-      - install
-      - desktop
-
   tasks:
     - name: Arch collection tasks
       ansible.builtin.include_tasks:
         file: collections/arch-collection.yml
-      tags:
-        - install
-        - desktop  
-
+        include:
+          tags:
+            - install
+            - desktop
+      include: always
     - name: Linux Core collection tasks
       ansible.builtin.include_tasks:
         file: collections/linux-collection.yml
-      tags:
-        - install
-        - desktop  
-
+        include:
+          tags:
+            - install
+            - desktop
+      include: always
     - name: Linux Desktop
       ansible.builtin.include_tasks:
         file: collections/desktop-collection.yml
-      tags:
-        - desktop
+        include:
+          tags:
+            - desktop
+      include: always
+
