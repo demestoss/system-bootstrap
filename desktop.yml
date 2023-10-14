@@ -1,0 +1,11 @@
+- hosts: localhost
+  gather_facts: true
+  become: true
+  become_user: "{{ lookup('env', 'USER') }}"
+  tasks:
+    - name: Linux Desktop
+      ansible.builtin.include_tasks:
+        file: collections/desktop-collection.yml
+        include: always
+      include: always
+

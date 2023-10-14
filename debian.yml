@@ -11,30 +11,14 @@
       apt:
       update_cache: true
       become_user: root
-      tags:
-        - install
-        - desktop
   tasks:
     - name: Debian collection tasks
       ansible.builtin.include_tasks:
         file: collections/debian-collection.yml
-        include:
-          tags:
-            - install
-            - desktop
+        include: always
       include: always
     - name: Linux Core collection tasks
       ansible.builtin.include_tasks:
         file: collections/linux-collection.yml
-        include:
-          tags:
-            - install
-            - desktop
-      include: always
-    - name: Linux Desktop
-      ansible.builtin.include_tasks:
-        file: collections/desktop-collection.yml
-        include:
-          tags:
-            - desktop
+        include: always
       include: always

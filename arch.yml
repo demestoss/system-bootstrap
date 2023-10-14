@@ -10,24 +10,10 @@
     - name: Arch collection tasks
       ansible.builtin.include_tasks:
         file: collections/arch-collection.yml
-        include:
-          tags:
-            - install
-            - desktop
+        include: always
       include: always
     - name: Linux Core collection tasks
       ansible.builtin.include_tasks:
         file: collections/linux-collection.yml
-        include:
-          tags:
-            - install
-            - desktop
+        include: always
       include: always
-    - name: Linux Desktop
-      ansible.builtin.include_tasks:
-        file: collections/desktop-collection.yml
-        include:
-          tags:
-            - desktop
-      include: always
-
