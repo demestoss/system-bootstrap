@@ -12,7 +12,7 @@
   become: true
   become_user: root
   community.general.pacman:
-    name: ["lua5.1", "unzip", "libtool", "libtool-bin", "gettext"]
+    name: ["lua5.1", "unzip", "libtool", "libtool-bin", "gettext", "ripgrep", "fd"]
   tags:
     - core
     - neovim
