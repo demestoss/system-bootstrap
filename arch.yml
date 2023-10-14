@@ -3,17 +3,13 @@
   become: true
   become_user: "{{ lookup('env', 'USER') }}"
   vars:
-    source_key: "./.ssh/id_ed25519"
+    source_key: ./.ssh/id_ed25519
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
     personal: "{{ lookup('env', 'HOME') }}/personal"
   tasks:
     - name: Arch collection tasks
       ansible.builtin.include_tasks:
         file: collections/arch-collection.yml
-        include: always
-      include: always
     - name: Linux Core collection tasks
       ansible.builtin.include_tasks:
         file: collections/linux-collection.yml
-        include: always
-      include: always

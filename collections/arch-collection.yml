@@ -1,50 +1,34 @@
 - name: Install zsh from Pacman
+  become: true
+  become_user: root
   community.general.pacman:
     name: zsh
-    update_cache: yes
-    tags:
-      - zsh
-      - dotfiles
+    update_cache: true
+  tags: [zsh, dotfiles]
 - name: Installing stow
+  become: true
   become_user: root
   community.general.pacman:
     name: stow
-    update_cache: yes
-  tags:
-    - dotfiles
-    - stow
+    update_cache: true
+  tags: [dotfiles, stow]
 - name: Install tmux
+  become: true
+  become_user: root
   community.general.pacman:
     name: tmux
-    update_cache: yes
-  tags:
-    - tmux
-    - dotfiles
+    update_cache: true
+  tags: [tmux, dotfiles]
 - name: Install fzf
+  become: true
   become_user: root
   community.general.pacman:
     name: fzf
-    update_cache: yes
-  tags:
-    - addons
+    update_cache: true
+  tags: [addons]
 - name: Core tasks
   ansible.builtin.include_tasks:
     file: tasks/arch-core.yml
-    include:
-    tags:
-      - core
-      - nvim
-      - dotfiles
+    apply:
+      tags: [core, nvim, dotfiles]
   tags: always
-- name: Install fd
-  community.general.pacman:
-    name: fd
-    update_cache: yes
-  tags:
-    - dotfiles
-- name: Install rip-grep
-  community.general.pacman:
-    name: ripgrep
-    update_cache: yes
-  tags:
-    - dotfiles

@@ -2,7 +2,7 @@
   become: true
   become_user: root
   community.general.pacman:
-    name: ["build-essential", "cmake", "pkg-config", "libpthread-stubs0-dev"]
+    name: ["cmake", "pkg-config"]
   tags:
     - core
     - neovim
@@ -12,7 +12,7 @@
   become: true
   become_user: root
   community.general.pacman:
-    name: ["lua5.1", "unzip", "libtool", "libtool-bin", "gettext", "ripgrep", "fd"]
+    name: ["lua51", "unzip", "libtool", "gettext", "ripgrep", "fd"]
   tags:
     - core
     - neovim
@@ -22,7 +22,7 @@
   become: true
   become_user: root
   community.general.pacman:
-    name: ["curl", "htop", "golang", "python3-pip", "moreutils", "clangd"]
+    name: ["curl", "htop", "moreutils", "direnv"]
   tags:
     - core
     - dotfiles

@@ -1,13 +1,9 @@
 - name: Terminal tasks
   ansible.builtin.include_tasks:
     file: tasks/terminal.yml
-    include:
-    tags:
-      - terminal
-      - kitty
-      - desktop
+    apply:
+      tags: [terminal, kitty, desktop]
   tags: always
 - name: Stow linux desktop dotfiles
   shell: cd $HOME/.dotfiles && zsh linux-desktop
-  tags:
-    - desktop
+  tags: [desktop]

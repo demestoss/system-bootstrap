@@ -11,4 +11,5 @@
 
 - name: Install neovim
   become: true
+  become_user: root
   shell: "cd {{ lookup('env', 'HOME') }}/neovim && make install"
