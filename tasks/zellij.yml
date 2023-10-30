@@ -1,0 +1,11 @@
+- name: Cargo install
+  ansible.builtin.include_tasks:
+    file: tasks/rust.yml
+    apply: always
+  tags: always
+- name: Install Zellij
+  community.general.cargo:
+    name: zellij
+    locked: true
+- name: Rustup Update
+  shell: rustup update

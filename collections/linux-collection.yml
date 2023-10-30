@@ -40,6 +40,12 @@
     apply:
       tags: [nvim, dotfiles]
   tags: always
+- name: Zellij tasks
+  ansible.builtin.include_tasks:
+    file: tasks/zellij.yml
+    apply:
+      tags: [zellij, dotfiles]
+  tags: always
 - name: Addons tasks
   ansible.builtin.include_tasks:
     file: tasks/addons.yml
