@@ -30,5 +30,5 @@
   ansible.builtin.include_tasks:
     file: tasks/arch-core.yml
     apply:
-      tags: [core, nvim, dotfiles]
+      tags: [core, dotfiles]
   tags: always
