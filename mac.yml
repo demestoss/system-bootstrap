@@ -11,7 +11,3 @@
       ansible.builtin.include_tasks:
         file: collections/mac-collection.yml
       tags: always
-    - name: Unix Core collection tasks
-      ansible.builtin.include_tasks:
-        file: collections/unix-collection.yml
-      tags: always

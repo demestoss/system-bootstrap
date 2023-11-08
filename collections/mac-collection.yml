@@ -2,7 +2,7 @@
   shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 - name: Install Packages for dotfiles
   community.general.homebrew:
-    name: [ripgrep, fd, fzf, tmux, stow, zsh]
+    name: [ripgrep, fd, fzf, tmux, stow, zsh, yabai]
     state: latest
   tags: dotfiles
 - name: Core tasks
