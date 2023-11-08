@@ -5,4 +5,4 @@
   tasks:
     - name: Linux Desktop
       ansible.builtin.include_tasks:
-        file: collections/desktop-collection.yml
+        file: collections/linux-desktop-collection.yml

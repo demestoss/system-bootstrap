@@ -1,6 +1,6 @@
 - name: Terminal tasks
   ansible.builtin.include_tasks:
-    file: tasks/terminal.yml
+    file: tasks/linux/terminal.yml
     apply:
       tags: [terminal, kitty, desktop]
   tags: always

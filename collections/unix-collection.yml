@@ -1,54 +1,54 @@
 - name: SSH tasks
   ansible.builtin.include_tasks:
-    file: tasks/ssh.yml
+    file: tasks/unix/ssh.yml
     apply:
       tags: [ssh, dotfiles]
   tags: always
 - name: Zsh tasks
   ansible.builtin.include_tasks:
-    file: tasks/zsh.yml
+    file: tasks/unix/zsh.yml
     apply:
       tags: [zsh, dotfiles]
   tags: always
 - name: Dotfiles tasks
   ansible.builtin.include_tasks:
-    file: tasks/dotfiles.yml
+    file: tasks/unix/dotfiles.yml
     apply:
       tags: [dotfiles, stow]
   tags: always
 - name: Cargo tasks
   ansible.builtin.include_tasks:
-    file: tasks/rust.yml
+    file: tasks/unix/rust.yml
     apply:
       tags: [rust, node, addons]
   tags: always
 - name: Node tasks
   ansible.builtin.include_tasks:
-    file: tasks/node.yml
+    file: tasks/unix/node.yml
     apply:
       tags: [node]
   tags: always
 - name: Tmux tasks
   ansible.builtin.include_tasks:
-    file: tasks/tmux.yml
+    file: tasks/unix/tmux.yml
     apply:
       tags: [tmux, dotfiles]
   tags: always
 - name: Neovim tasks
   ansible.builtin.include_tasks:
-    file: tasks/nvim.yml
+    file: tasks/unix/nvim.yml
     apply:
       tags: [nvim, dotfiles]
   tags: always
 - name: Zellij tasks
   ansible.builtin.include_tasks:
-    file: tasks/zellij.yml
+    file: tasks/unix/zellij.yml
     apply:
       tags: [zellij, dotfiles]
   tags: always
 - name: Addons tasks
   ansible.builtin.include_tasks:
-    file: tasks/addons.yml
+    file: tasks/unix/addons.yml
     apply:
       tags: [addons]
   tags: always

@@ -2,10 +2,9 @@
   ansible.builtin.git:
     repo: git@github.com:demestoss/.dotfiles.git
     dest: ~/.dotfiles
-    recursive: yes
-    update: yes
-    accept_hostkey: yes
+    recursive: true
+    update: true
+    accept_hostkey: true
     version: master
-
 - name: Stow debian dotfiles
-  shell: cd $HOME/.dotfiles && zsh linux
+  shell: cd $HOME/.dotfiles && zsh unix

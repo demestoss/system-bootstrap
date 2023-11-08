@@ -1,0 +1,2 @@
+- name: Stow debian dotfiles
+  shell: cd $HOME/.dotfiles && zsh mac

@@ -1,0 +1,21 @@
+- name: Install Homebrew
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+- name: Install Packages for dotfiles
+  community.general.homebrew:
+    name: [ripgrep, fd, fzf, tmux, stow, zsh]
+    state: latest
+  tags: dotfiles
+- name: Core tasks
+  ansible.builtin.include_tasks:
+    file: tasks/mac/core.yml
+    include:
+    tags: [core, nvim, dotfiles]
+  tags: always
+- name: Unix Core collection tasks
+  ansible.builtin.include_tasks:
+    file: collections/unix-collection.yml
+  tags: always
+- name: Dotfiles stow
+  ansible.builtin.include_tasks:
+    file: tasks/mac/dotfiles.yml
+  tags: always

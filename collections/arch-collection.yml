@@ -28,7 +28,7 @@
   tags: [addons]
 - name: Core tasks
   ansible.builtin.include_tasks:
-    file: tasks/arch-core.yml
+    file: tasks/arch/core.yml
     apply:
       tags: [core, dotfiles]
   tags: always

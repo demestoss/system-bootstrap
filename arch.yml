@@ -11,7 +11,7 @@
       ansible.builtin.include_tasks:
         file: collections/arch-collection.yml
       tags: always
-    - name: Linux Core collection tasks
+    - name: Unix Core collection tasks
       ansible.builtin.include_tasks:
-        file: collections/linux-collection.yml
+        file: collections/unix-collection.yml
       tags: always

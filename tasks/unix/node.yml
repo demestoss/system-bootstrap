@@ -6,12 +6,8 @@
 - name: Install Yarn
   npm:
     name: yarn
-    global: yes
+    global: true
 - name: Install pnpm
   npm:
     name: pnpm
-    global: yes
-- name: Install prettierd
-  npm:
-    name: "@fsouza/prettierd"
-    global: yes
+    global: true

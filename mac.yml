@@ -6,17 +6,11 @@
     source_key: ./.ssh/id_ed25519
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
     personal: "{{ lookup('env', 'HOME') }}/personal"
-  pre_tasks:
-    - name: Update cache
-      apt:
-      update_cache: true
-      become_user: root
   tasks:
-    - name: Debian collection tasks
+    - name: Mac collection tasks
       ansible.builtin.include_tasks:
-        file: collections/debian-collection.yml
-        include: always
-      include: always
+        file: collections/mac-collection.yml
+      tags: always
     - name: Unix Core collection tasks
       ansible.builtin.include_tasks:
         file: collections/unix-collection.yml

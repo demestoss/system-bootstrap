@@ -1,7 +1,9 @@
 - name: Install Exa
   community.general.cargo:
     name: exa
-
+- name: Install skim
+  community.general.cargo:
+    name: skim
 - name: Install bat
   community.general.cargo:
     name: bat
