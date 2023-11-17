@@ -8,7 +8,6 @@
 - name: Core tasks
   ansible.builtin.include_tasks:
     file: tasks/mac/core.yml
-    include:
     tags: [core, nvim, dotfiles]
   tags: always
 - name: Unix Core collection tasks
